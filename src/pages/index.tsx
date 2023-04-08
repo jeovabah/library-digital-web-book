@@ -18,7 +18,6 @@ export default function Login() {
   const [user, setUser] = useState<DataLogin>({} as DataLogin);
   return (
     <div className="w-full h-full flex items-center justify-center sm:flex-col  px-8">
-      <div className="lg:w-1/2 max-sm:hidden  max-sm:w-full sm:w-full">50%</div>
       <div className="lg:w-1/2 max-sm:w-full max-sm:h-full max-sm:items-center max-sm:justify-center max-sm:flex max-sm:flex-col sm:w-full">
         <Text
           fontSize="4xl"
