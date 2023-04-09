@@ -11,7 +11,7 @@ import { BsSearch } from "react-icons/bs";
 
 export const Header = () => {
   return (
-    <Flex as="header" w="100%" h="4rem" alignItems="center">
+    <Flex as="header" w="100%" h="4rem" mb={"2rem"} alignItems="center">
       <InputGroup w={"100%"}>
         <InputLeftElement
           pointerEvents="none"
