@@ -9,13 +9,17 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useAuth } from "@/Providers/AuthProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SpinnerFull } from "@/Components/SpinnerFull";
 
 export default function Login() {
-  const { handleLogin, loadingSpinner } = useAuth();
+  const { handleLogin, loadingSpinner, handleVerifyUser } = useAuth();
 
   const [user, setUser] = useState<DataLogin>({} as DataLogin);
+
+  useEffect(() => {
+    handleVerifyUser(true);
+  }, []);
   return (
     <div className="w-full h-full flex items-center justify-center sm:flex-col  px-8">
       <div className="lg:w-1/2 max-sm:w-full max-sm:h-full max-sm:items-center max-sm:justify-center max-sm:flex max-sm:flex-col sm:w-full">

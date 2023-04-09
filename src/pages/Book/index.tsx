@@ -1,12 +1,10 @@
 import { Layout } from "@/Components/Layout";
 import { Box, Text } from "@chakra-ui/react";
 
-export default function Home() {
+export default function Book() {
   return (
     <Layout>
-      <Box>
-        <Text>Home</Text>
-      </Box>
+      <h1>Book</h1>
     </Layout>
   );
 }

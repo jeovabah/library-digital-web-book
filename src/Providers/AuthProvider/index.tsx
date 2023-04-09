@@ -1,3 +1,4 @@
+import { APP_ROUTES } from "@/Routes";
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
@@ -10,8 +11,10 @@ export const AuthProvider = ({ children }: PropsChildren) => {
 
   const handleLogin = (data: DataLogin) => {
     localStorage.setItem("user", JSON.stringify(data));
-
+    localStorage.setItem("token", "12345");
     setUser(data);
+
+    router.push("/Home");
   };
 
   const handleLogout = () => {
@@ -19,13 +22,12 @@ export const AuthProvider = ({ children }: PropsChildren) => {
     setUser({} as DataLogin);
   };
 
-  const handleVerifyUser = () => {
+  const handleVerifyUser = (isRoute = false) => {
     const user = localStorage.getItem("user");
-    console.log(user);
     if (user) {
       setUser(JSON.parse(user));
       // route to home page
-      router.push("/Home");
+      isRoute && router.push(APP_ROUTES.private.home.path);
     }
     setTimeout(() => {
       handleSplash();
@@ -48,8 +50,15 @@ export const AuthProvider = ({ children }: PropsChildren) => {
   }, []);
 
   const value = useMemo(
-    () => ({ user, handleLogin, handleLogout, loadingSpinner }),
-    [user, handleLogin, handleLogout, loadingSpinner]
+    () => ({
+      user,
+      handleLogin,
+      handleLogout,
+      loadingSpinner,
+      isAuntenticated: Object.keys(user).length > 0,
+      handleVerifyUser,
+    }),
+    [user, handleLogin, handleLogout, loadingSpinner, handleVerifyUser]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
