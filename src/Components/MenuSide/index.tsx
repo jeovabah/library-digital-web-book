@@ -13,7 +13,6 @@ export const MenuSide = () => {
       h={"100%"}
       alignItems={"center"}
       w={"7rem"}
-      mr={"1rem"}
     >
       <Image
         alt={"logo-canaa"}
