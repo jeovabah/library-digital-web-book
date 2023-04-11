@@ -1,5 +1,5 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
-import bookCopy from "../../assets/book-copy.jpg";
+import bookCopy from "../../assets/book-copy.png";
 import Image from "next/image";
 export const Copy = () => {
   return (
@@ -33,6 +33,7 @@ export const Copy = () => {
             maxHeight: "400px",
             objectFit: "cover",
             objectPosition: "center",
+            mixBlendMode: "multiply",
           }}
         />
       </Box>
