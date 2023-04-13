@@ -22,6 +22,12 @@ export default async function handler(
       if (!book) {
         return res.status(404).json({ message: "Livro não encontrado" });
       }
+      const deletedBook = await prisma?.book.delete({
+        where: { id: String(bookId) },
+      });
+      return res
+        .status(200)
+        .json({ message: "Livro foi deletado", data: deletedBook });
     } catch (error) {
       console.log(error);
       return res.status(400).json({ message: "Livro não foi encontrado" });
@@ -30,19 +36,27 @@ export default async function handler(
   // UPDATE
   else if (req.method === "PUT") {
     try {
-      const book = await prisma?.book.update({
+      const book = await prisma?.book.findUnique({
+        where: { id: String(bookId) },
+      });
+      if (!book) {
+        return res.status(404).json({ message: "Livro não encontrado" });
+      }
+      const updatedBook = await prisma?.book.update({
         where: { id: String(bookId) },
         data: {
-          author,
-          image_url,
-          link_url,
-          title,
+          author: author || book.author,
+          image_url: image_url || book.image_url,
+          link_url: link_url || book.link_url,
+          title: title || book.title,
         },
       });
-      res.status(200).json({ message: "Livro foi atualizado", data: book });
+      return res
+        .status(200)
+        .json({ message: "Livro foi atualizado", data: updatedBook });
     } catch (error) {
       console.log(error);
-      res.status(400).json({ message: error });
+      return res.status(400).json({ message: "Livro não foi atualizado" });
     }
   } else if (req.method === "GET" && bookId) {
     try {

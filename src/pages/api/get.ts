@@ -12,5 +12,6 @@ export default async function handler(
     return books;
   } catch (error) {
     console.log(error);
+    res.status(400).json({ message: "Livro não foi adicionado", data: error });
   }
 }
