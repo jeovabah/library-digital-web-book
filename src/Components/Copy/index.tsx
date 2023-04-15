@@ -23,7 +23,7 @@ export const Copy = () => {
           </Text>
         </Box>
       </Box>
-      <Flex justifyContent={"center"} w={"100%"} mx={"1rem"} mt="1.5rem">
+      <Flex justifyContent={"center"} w={"100%"} mt={"0.5rem"}>
         <Image
           src={bookCopy}
           alt="book copy"
