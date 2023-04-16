@@ -26,6 +26,7 @@ model Aluguel {
   book      Book @relation("BookAluguel", fields: [bookId], references: [id])
   bookId    String @db.ObjectId
   userName  String
+  status    String @default("PENDING") @map("status") // PENDING, CANCELED, FINISHED
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
