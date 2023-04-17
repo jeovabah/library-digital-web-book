@@ -14,6 +14,7 @@ model Book {
   author    String
   link_url  String
   image_url String
+  isPdf     Boolean @default(false) @map("isPdf")
   quantity  Int   @default(1) @map("quantity")
   available Boolean @default(true) @map("available")
   aluguels  Aluguel[] @relation("BookAluguel")
